@@ -35,3 +35,37 @@ I need to access other components to modify your css(hide, show) or add styles, 
 </script>
 ```
 
+## On complete scroll
+
+Call *javascript* function to do scroll from **p:commandbutton** when "oncomplete" action is executed.
+
+```xhtml
+<p:commandButton id="btnAction"
+	actionListener="#{bean.action}"
+	oncomplete="scrollPanel('pnlContenido')" />
+```
+
+The javascript function **(jquery)** is named after the primefaces panel ```<p:outputPanel id="pnlContenido" />``` as a parameter to which the scroll must be directed.
+
+```xhtml
+<script type="text/javascript">
+	// jquery, scroll with effect
+	function scrollPanel(panelId) {
+		var panel = $('#'+panelId);
+		$('html, body').animate({
+			scrollTop : panel.offset().top
+		}, 1000);
+	}
+</script>
+```
+
+It is also possible to do the same with pure javascript but without animation or effects.
+
+```xhtml
+<script type="text/javascript">
+    // pure javascript without effect
+    function ScrollPage(location) {
+        window.location.hash=location;
+    }
+</script>
+```
